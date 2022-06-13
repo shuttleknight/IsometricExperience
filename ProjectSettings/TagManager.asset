@@ -38,11 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: lPlayer
+  - name: lFloor
+    uniqueID: 4002981113
+    locked: 0
+  - name: lPlayerAndWalls
     uniqueID: 878530619
     locked: 0
-  - name: lLevel
-    uniqueID: 4002981113
+  - name: lCollision
+    uniqueID: 3934566429
     locked: 0
   - name: Default
     uniqueID: 0

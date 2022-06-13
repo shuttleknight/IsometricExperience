@@ -11,6 +11,7 @@ public class cMovement : MonoBehaviour
     {
         SetTranslationDirection();
         transform.Translate(input * velocity * Time.deltaTime);
+        Debug.Log(input * velocity * Time.deltaTime);
     }
 
     private void SetTranslationDirection()
