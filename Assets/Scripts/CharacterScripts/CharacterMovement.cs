@@ -11,6 +11,11 @@ public class CharacterMovement : MonoBehaviour {
     }
     
     void FixedUpdate() {
+        HalfYPropertyToAccountForIsometricDistortion();
         transform.Translate(input * velocity * Time.fixedDeltaTime);   
+    }
+
+    void HalfYPropertyToAccountForIsometricDistortion() {
+        input.y /= 2;
     }
 }

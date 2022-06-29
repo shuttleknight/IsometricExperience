@@ -7,6 +7,8 @@ public class CharacterRenderer : MonoBehaviour
     Vector2 input;
     private Animator characterAnimator;
     private SpriteRenderer characterRenderer;
+    private Animation currentAnimation;
+    float idleFrame;
 
     public void SetInput(Vector2 value) {
         input = value;
@@ -21,19 +23,21 @@ public class CharacterRenderer : MonoBehaviour
     void Update()
     {
         FlipCharacterAlongXIfFacingThatWay();
-        SetAnimatorParameters((int)input.x, YValueMultipliedToAccountForIsometricDistortion());
-    }
-
-    int YValueMultipliedToAccountForIsometricDistortion() {
-        return (int)(input.y * 2);
+        SetAnimatorParameters((int)input.x, (int)input.y);
     }
 
     void FlipCharacterAlongXIfFacingThatWay() {
         if (input.x < 0) {
             characterRenderer.flipX = true;
         }
-        else {
+        else if (input.x > 0) {
             characterRenderer.flipX = false;
+        }
+    }
+
+    void StopAnimationIfIdle() {
+        if (input == new Vector2(0, 0)) {
+            currentAnimation = GetComponent<Animation>();
         }
     }
 

@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
 
     void Update() {
-        inputToSend = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") / 2);
+        inputToSend = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         SendInputToRendererAndMovement();
     }
 
