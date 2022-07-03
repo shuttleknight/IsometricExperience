@@ -7,7 +7,7 @@ public class CharacterRenderer : MonoBehaviour
     Vector2 input;
     private Animator characterAnimator;
     private SpriteRenderer characterRenderer;
-    private Animation currentAnimation;
+    private AnimationState currentState;
     float idleFrame;
 
     public void SetInput(Vector2 value) {
@@ -24,6 +24,7 @@ public class CharacterRenderer : MonoBehaviour
     {
         FlipCharacterAlongXIfFacingThatWay();
         SetAnimatorParameters((int)input.x, (int)input.y);
+        StopAnimationIfIdle();
     }
 
     void FlipCharacterAlongXIfFacingThatWay() {
@@ -37,13 +38,16 @@ public class CharacterRenderer : MonoBehaviour
 
     void StopAnimationIfIdle() {
         if (input == new Vector2(0, 0)) {
-            currentAnimation = GetComponent<Animation>();
+            characterAnimator.SetFloat("velocity", 0);
+        }
+        else {
+            characterAnimator.SetFloat("velocity", 1);
         }
     }
 
     void SetAnimatorParameters(int HS, int VS)
     {
-        characterAnimator.SetInteger("horizontalVelocity", Mathf.Abs(HS));
-        characterAnimator.SetInteger("verticalVelocity", VS);
+        characterAnimator.SetInteger("horizontalDirection", Mathf.Abs(HS));
+        characterAnimator.SetInteger("verticalDirection", VS);
     }
 }
